@@ -10,10 +10,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+/* segment component style override */
 .ui .segment {
   background: inherit;
   border: none;
   box-shadow: none;
   border-radius: 0;
   padding: 0;
+}
+
+.label {
+  top: 0em !important;
+  left: 80% !important;
 }

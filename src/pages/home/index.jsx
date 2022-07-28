@@ -1,11 +1,14 @@
 import React from "react";
 import { Button, Container, Divider, Grid, Header, Image, List, Segment } from "semantic-ui-react";
 import HeroSection from "./HeroSection";
+import ProductListing from "./ProductListing";
 
 const HomePage = () => {
   return (
     <>
       <HeroSection />
+      <ProductListing />
+
       <Segment style={{ padding: "8em 0em" }} vertical>
         <Grid container stackable verticalAlign="middle">
           <Grid.Row>

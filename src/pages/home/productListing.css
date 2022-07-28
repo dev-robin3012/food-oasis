@@ -1,0 +1,14 @@
+.product_title {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product_title a {
+  color: #1b1c1d;
+}
+
+.product_title a:hover {
+  color: orange;
+}
