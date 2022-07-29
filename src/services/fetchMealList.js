@@ -1,6 +1,6 @@
 export const getMeal = async () => {
   try {
-    const res = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+    const res = await fetch(`${process.env.REACT_APP_BASE_URL}/random.php"`);
     const meal = await res.json();
     return meal.meals[0];
   } catch (error) {
@@ -11,7 +11,7 @@ export const getMeal = async () => {
 export const getBySearch = async (query) => {
   try {
     if (query) {
-      const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+      const res = await fetch(`${process.env.REACT_APP_BASE_URL}/search.php?s=${query}`);
       const { meals } = await res.json();
       return meals;
     } else {
