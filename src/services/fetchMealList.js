@@ -1,6 +1,6 @@
 export const getMeal = async () => {
   try {
-    const res = await fetch(`${process.env.REACT_APP_BASE_URL}/random.php"`);
+    const res = await fetch(`${process.env.REACT_APP_BASE_URL}/random.php`);
     const meal = await res.json();
     return meal.meals[0];
   } catch (error) {
