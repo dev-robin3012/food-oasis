@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Form, Header, Icon, Image, Input, Modal, Segment } from "semantic-ui-react";
-import { ModalContext } from ".";
+import { ModalContext, UserContext } from ".";
 import logo from "../assets/logo.png";
 
 const AuthModal = () => {
+  const [user, setUser] = useContext(UserContext);
   const [openModal, setOpenModal] = useContext(ModalContext);
   const [modalAction, setModalAction] = useState("login");
   const [formData, setFormData] = useState({});
@@ -15,9 +16,12 @@ const AuthModal = () => {
       case "login":
         const user = db.find((user) => user.email === formData.email);
 
+        if (!user) return alert("User not found. Please sign up.");
+
         if (user.password === formData.password) {
           delete user.password;
-          sessionStorage.setItem("food-oasis:user", JSON.stringify(user));
+          sessionStorage.setItem("food-oasis:user", JSON.stringify({ credentials: user }));
+          setUser({ credentials: user });
           setOpenModal(false);
         } else {
           alert("password did'n match");
@@ -29,6 +33,9 @@ const AuthModal = () => {
         if (exist) return alert("user already exist.");
         else {
           localStorage.setItem("food-oasis:users", JSON.stringify([...db, formData]));
+          delete formData.password;
+          sessionStorage.setItem("food-oasis:user", JSON.stringify({ credentials: formData }));
+          setUser({ credentials: formData });
           setOpenModal(false);
         }
         break;

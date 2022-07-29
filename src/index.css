@@ -10,6 +10,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+li {
+  font-size: 16px;
+}
+
+li::marker {
+  content: "👉 ";
+}
+
 /* segment component style override */
 .ui .segment {
   background: inherit;

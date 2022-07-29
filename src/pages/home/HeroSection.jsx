@@ -30,7 +30,7 @@ const HeroSection = ({ device }) => {
             }}
           />
         </Segment>
-        <Button color="orange">
+        <Button href="#products" color="orange">
           Get Started
           <Icon name="right arrow" />
         </Button>

@@ -1,11 +1,11 @@
 import "./App.css";
 import Layout from "./layout";
-import HomePage from "./pages/home";
+import AppRouter from "./router";
 
 function App() {
   return (
     <Layout>
-      <HomePage />
+      <AppRouter />
     </Layout>
   );
 }
