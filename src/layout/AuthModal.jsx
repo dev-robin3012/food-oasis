@@ -4,24 +4,23 @@ import { ModalContext, UserContext } from ".";
 import logo from "../assets/logo.png";
 
 const AuthModal = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
   const [openModal, setOpenModal] = useContext(ModalContext);
   const [modalAction, setModalAction] = useState("login");
   const [formData, setFormData] = useState({});
 
   const handleSubmit = () => {
     const db = JSON.parse(localStorage.getItem("food-oasis:users"));
+    const existUser = db.find((user) => user.email === formData.email);
 
     switch (modalAction) {
       case "login":
-        const user = db.find((user) => user.email === formData.email);
+        if (!existUser) return alert("User not found. Please sign up.");
 
-        if (!user) return alert("User not found. Please sign up.");
-
-        if (user.password === formData.password) {
-          delete user.password;
-          sessionStorage.setItem("food-oasis:user", JSON.stringify({ credentials: user }));
-          setUser({ credentials: user });
+        if (existUser.password === formData.password) {
+          delete existUser.password;
+          sessionStorage.setItem("food-oasis:user", JSON.stringify({ credentials: existUser }));
+          setUser({ credentials: existUser });
           setOpenModal(false);
         } else {
           alert("password did'n match");
@@ -29,13 +28,12 @@ const AuthModal = () => {
         break;
 
       case "signUp":
-        const exist = db.find((user) => user.email === formData.email);
-        if (exist) return alert("user already exist.");
+        if (existUser) return alert("user already exist.");
         else {
           localStorage.setItem("food-oasis:users", JSON.stringify([...db, formData]));
           delete formData.password;
           sessionStorage.setItem("food-oasis:user", JSON.stringify({ credentials: formData }));
-          setUser({ credentials: formData });
+          setUser({ ...existUser, credentials: formData });
           setOpenModal(false);
         }
         break;

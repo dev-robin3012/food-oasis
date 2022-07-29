@@ -5,7 +5,7 @@ import { ModalContext, UserContext } from ".";
 
 const NavBar = ({ setOpenSideBar }) => {
   const [fixed, setFixed] = useState();
-  const [openModal, setOpenModal] = useContext(ModalContext);
+  const [, setOpenModal] = useContext(ModalContext);
   const [user, setUser] = useContext(UserContext);
 
   const handleLogOut = () => {
